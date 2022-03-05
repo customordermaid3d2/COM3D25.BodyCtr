@@ -41,6 +41,7 @@ namespace COM3D25.BodyCtr
         public static Dictionary<string, bool[]> disCrcParts;
         public static Dictionary<string, List<SubProp>[]> dlistSubProp;
         public static Dictionary<string, MaidProp[]> dMaidProp;
+        public static bool maidOn;
 
 
         //--------------------
@@ -76,6 +77,8 @@ namespace COM3D25.BodyCtr
                 dlistSubProp[item] = new List<SubProp>[c];
                 dMaidProp[item] = new MaidProp[c];
             }
+
+            select();
         }
 
         public static void dmpnsSetup()
@@ -84,6 +87,7 @@ namespace COM3D25.BodyCtr
             {
                 MPN.HeadX,
                 MPN.HeadY,
+
                 MPN.HandSize,
                 MPN.FaceShape,
                 MPN.FaceShapeSlim,
@@ -91,8 +95,10 @@ namespace COM3D25.BodyCtr
                 MPN.NeckThickX,
                 MPN.NeckThickY,
                 MPN.HohoShape,
+
                 MPN.NosePos,
                 MPN.NoseScl,
+
                 MPN.LipThick,
             };
             dmpns["Eye"] = new MPN[]
@@ -103,17 +109,45 @@ namespace COM3D25.BodyCtr
                 MPN.EyePosX,
                 MPN.EyePosY,
                 MPN.EyeClose,
+
                 MPN.EyeBallPosX,
                 MPN.EyeBallPosY,
                 MPN.EyeBallSclX,
                 MPN.EyeBallSclY,
+
                 MPN.Yorime,
                 MPN.Eyedel,
                 MPN.Itome,
-                MPN.FutaePosX,
+
+
+            };
+            dmpns["Mabuta"] = new MPN[]
+{
+                 MPN.FutaePosX,
                 MPN.FutaePosY,
                 MPN.FutaeRot,
-            };
+
+                MPN.MabutaUpIn,
+                MPN.MabutaUpIn2,
+                MPN.MabutaUpMiddle,
+                MPN.MabutaUpOut,
+                MPN.MabutaUpOut2,
+
+                MPN.MabutaLowIn,
+                MPN.MabutaLowUpMiddle,
+                MPN.MabutaLowUpOut,
+};
+
+            dmpns["Mayu"] = new MPN[]
+{
+                MPN.MayuX,
+                MPN.MayuY,
+                MPN.MayuShapeIn,
+                MPN.MayuShapeOut,
+                MPN.MayuRot,
+                MPN.MayuThick,
+                MPN.MayuLong,
+};
             dmpns["Ear"] = new MPN[]
             {
                 MPN.EarNone,
@@ -136,19 +170,10 @@ namespace COM3D25.BodyCtr
                 MPN.MuneLong,
                 MPN.MuneDir,
             };
-            dmpns["Mayu"] = new MPN[]
-            {
-                MPN.MayuShapeIn,
-                MPN.MayuShapeOut,
-                MPN.MayuX,
-                MPN.MayuY,
-                MPN.MayuRot,
-                MPN.MayuThick,
-                MPN.MayuLong,
-            };
+
             dmpns["Dou"] = new MPN[]
             {
-                 MPN.DouPer,
+                MPN.DouPer,
                 MPN.DouThick1X,
                 MPN.DouThick1Y,
                 MPN.DouThick2X,
@@ -224,18 +249,6 @@ namespace COM3D25.BodyCtr
                 MPN.ChikubiR,
                 MPN.ChikubiW,
             };
-            dmpns["Mabuta"] = new MPN[]
-            {
-
-                MPN.MabutaUpIn,
-                MPN.MabutaUpIn2,
-                MPN.MabutaUpMiddle,
-                MPN.MabutaUpOut,
-                MPN.MabutaUpOut2,
-                MPN.MabutaLowIn,
-                MPN.MabutaLowUpMiddle,
-                MPN.MabutaLowUpOut,
-            };
 
             dmpns["Reg"] = new MPN[]
             {
@@ -292,15 +305,16 @@ namespace COM3D25.BodyCtr
             aMaidProp = dMaidProp[s];
         }
 
-        public static void SetMaid(int seleted)
+        public static Maid SetMaid(int seleted)
         {
-            SetMaid(MaidActiveUtill.GetMaid(seleted));
+            return SetMaid(MaidActiveUtill.GetMaid(seleted));
         }
 
-        public static void SetMaid(Maid maid)
+        public static Maid SetMaid(Maid maid)
         {
             MPNUtill.maid = maid;
             if (maid != null)
+            {
                 for (int i = 0; i < acnt; i++)
                 {
                     var p = aMaidProp[i] = maid.GetProp(ampns[i]);
@@ -313,9 +327,24 @@ namespace COM3D25.BodyCtr
 
                     aisCrcParts[i] = p.isCrcParts;
                     alistSubProp[i] = p.listSubProp;
-
-                    
+                    /*
+                    if (p.listSubProp !=null)
+                    {
+                        BodyCtr.log.LogMessage($"{p.name} , { p.listSubProp.Count }");
+                        foreach (SubProp item in p.listSubProp)
+                        {
+                            BodyCtr.log.LogMessage($"{item.nFileNameRID} , {item.strFileName} , {item.strSlotName}");
+                        }
+                    }
+                    */
                 }
+                maidOn = true;
+            }
+            else
+            {
+                maidOn = false;
+            }
+            return MPNUtill.maid;
         }
     }
 }

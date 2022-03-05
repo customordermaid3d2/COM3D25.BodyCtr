@@ -34,7 +34,7 @@ namespace COM3D25.BodyCtr
         private Vector2 scrollPosition;
 
         int seleted;
-        bool maidOn;
+        //bool maidOn;
         Maid maid = null;
 
         private static ConfigEntry<bool> isInfo;
@@ -63,23 +63,14 @@ namespace COM3D25.BodyCtr
 
         private void MaidActiveUtill_deactivateMaidNum(int arg1, Maid arg2)
         {
-            if (arg1 == seleted) maidOn = false;
+            if (arg1 == seleted) maid = MPNUtill.SetMaid(null);
         }
 
         private void MaidActiveUtill_setActiveMaidNum(int arg1, Maid arg2)
         {
             if (arg1 == seleted)
             {
-                maid = arg2;
-                if (maid != null)
-                {
-                    MPNUtill.SetMaid(seleted);
-                    maidOn = true;
-                }
-                else
-                {
-                    maidOn = false;
-                }
+                maid= MPNUtill.SetMaid(arg2);
             }
         }
 
@@ -125,67 +116,66 @@ namespace COM3D25.BodyCtr
             {   // 최대화시
                 // 세로 스크롤 시작
                 scrollPosition = GUILayout.BeginScrollView(scrollPosition);
-
-                GUILayout.Label("Maid");
-                seleted = MaidActiveUtill.SelectionGrid(seleted);
-                if (GUI.changed)
+                try
                 {
-                    maid = MaidActiveUtill.GetMaid(seleted);
-                    if (maid != null)
-                    {
-                        MPNUtill.SetMaid(maid);
-                        maidOn = true;
-                    }
-                    else
-                    {
-                        maidOn = false;
-                    }
-                    GUI.changed = false;
-                }
 
-                if (GUILayout.Button($"isInfo {isInfo.Value}")) { isInfo.Value = !isInfo.Value; }
-                if (maid != null && isInfo.Value) // maid.boMAN
-                {
-                    GUILayout.Label("info");
-                    GUILayout.Label($"HasCrcBody {maid.HasCrcBody}");
-                    GUILayout.Label($"HasNewRealMan {maid.HasNewRealMan}");
-                    GUILayout.Label($"IsCrcBody {maid.IsCrcBody}");
-                    GUILayout.Label($"IsAllProcPropBusy {maid.IsAllProcPropBusy}");
-                    GUILayout.Label($"IsBusy {maid.IsBusy}");
-                    GUILayout.Label($"IsDefaultRealManOnHScene {maid.IsDefaultRealManOnHScene}");
-                    GUILayout.Label($"IsDefaultRealManOnNormalScene {maid.IsDefaultRealManOnNormalScene}");
-                    GUILayout.Label($"IsNewManIsRealMan {maid.IsNewManIsRealMan}");
-                    GUILayout.Label($"IsNowRealMan {maid.IsNowRealMan}");
-                    GUILayout.Label($"isOffsetUpdateEnd {maid.isOffsetUpdateEnd}");
-                    GUILayout.Label($"MayuDrawPriority {maid.MayuDrawPriority}");
-                    GUILayout.Label($"MicLipSync {maid.MicLipSync}");
-                }
-
-                GUILayout.Label("edit");
-                MPNUtill.akey = GUILayout.SelectionGrid(MPNUtill.akey, MPNUtill.dKeys, 4);
-                if (GUI.changed)
-                {
-                    MPNUtill.select();
-                    MPNUtill.SetMaid(maid);
-                    GUI.changed = false;
-                }
-
-                GUILayout.Label("edit");
-                GUI.enabled = maidOn;
-                //if (maidOn)
-                for (int i = 0; i < MPNUtill.acnt; i++)
-                {
-                    GUILayout.Label($"{MPNUtill.aMaidProp[i].idx} , {MPNUtill.anames[i]} , {MPNUtill.aisCrcParts[i]} , {MPNUtill.amins[i]} , {MPNUtill.amaxs[i]} , {MPNUtill.anows[i]} ");
-                    //GUILayout.Label($"cnt {MPNUtill.listSubProp[i]?.Count}");
-                    MPNUtill.anows[i] = GUILayout.HorizontalSlider(MPNUtill.anows[i], MPNUtill.amins[i], MPNUtill.amaxs[i]);
+                    GUILayout.Label("Maid");
+                    seleted = MaidActiveUtill.SelectionGrid(seleted);
                     if (GUI.changed)
                     {
-                        MPNUtill.maid.SetProp(MPNUtill.ampns[i], (int)MPNUtill.anows[i]);
-                        MPNUtill.maid.AllProcProp();
+                        maid = MPNUtill.SetMaid(seleted);
                         GUI.changed = false;
                     }
-                }
 
+                    if (GUILayout.Button($"isInfo {isInfo.Value}")) { isInfo.Value = !isInfo.Value; }
+                    if (maid != null && isInfo.Value) // maid.boMAN
+                    {
+                        GUILayout.Label("info");
+                        GUILayout.Label($"HasCrcBody {maid.HasCrcBody}");
+                        GUILayout.Label($"HasNewRealMan {maid.HasNewRealMan}");
+                        GUILayout.Label($"IsCrcBody {maid.IsCrcBody}");
+                        GUILayout.Label($"IsAllProcPropBusy {maid.IsAllProcPropBusy}");
+                        GUILayout.Label($"IsBusy {maid.IsBusy}");
+                        GUILayout.Label($"IsDefaultRealManOnHScene {maid.IsDefaultRealManOnHScene}");
+                        GUILayout.Label($"IsDefaultRealManOnNormalScene {maid.IsDefaultRealManOnNormalScene}");
+                        GUILayout.Label($"IsNewManIsRealMan {maid.IsNewManIsRealMan}");
+                        GUILayout.Label($"IsNowRealMan {maid.IsNowRealMan}");
+                        GUILayout.Label($"isOffsetUpdateEnd {maid.isOffsetUpdateEnd}");
+                        GUILayout.Label($"MayuDrawPriority {maid.MayuDrawPriority}");
+                        GUILayout.Label($"MicLipSync {maid.MicLipSync}");
+                    }
+
+                    GUILayout.Label("Kategorie");
+                    MPNUtill.akey = GUILayout.SelectionGrid(MPNUtill.akey, MPNUtill.dKeys, 4);
+                    if (GUI.changed)
+                    {
+                        MPNUtill.select();
+                        maid = MPNUtill.SetMaid(seleted);
+                        GUI.changed = false;
+                    }
+
+                    GUILayout.Label("Edit");
+                    //GUI.enabled = MPNUtill.maidOn;
+                    if (MPNUtill.maidOn)
+                    for (int i = 0; i < MPNUtill.acnt; i++)
+                    {
+                        //GUILayout.Label($"{MPNUtill.aMaidProp[i]?.idx} , {MPNUtill.anames[i]} , {MPNUtill.aisCrcParts[i]} , {MPNUtill.amins[i]} , {MPNUtill.amaxs[i]} , {MPNUtill.anows[i]} ");
+                        GUILayout.Label($"{MPNUtill.aMaidProp[i].idx} , {MPNUtill.anames[i]} , {MPNUtill.aisCrcParts[i]} , {MPNUtill.amins[i]} , {MPNUtill.amaxs[i]} , {MPNUtill.anows[i]} ");
+                        //GUILayout.Label($"cnt {MPNUtill.listSubProp[i]?.Count}");
+                        MPNUtill.anows[i] = GUILayout.HorizontalSlider(MPNUtill.anows[i], MPNUtill.amins[i], MPNUtill.amaxs[i]);
+                        if (GUI.changed)
+                        {
+                            MPNUtill.maid.SetProp(MPNUtill.ampns[i], (int)MPNUtill.anows[i]);
+                            MPNUtill.maid.AllProcProp();
+                            GUI.changed = false;
+                        }
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    log.LogError(e);
+                }
                 GUILayout.EndScrollView();// 세로 스크롤 끝
             }
             GUI.enabled = true;
