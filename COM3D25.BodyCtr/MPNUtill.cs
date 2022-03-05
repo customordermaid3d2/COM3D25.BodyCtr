@@ -23,9 +23,11 @@ namespace COM3D25.BodyCtr
 
         public static bool[] isCrcParts;
         public static List<SubProp>[] listSubProp;
-        
 
-        public static void init()
+		//
+		public static Dictionary<string, int> kategorie;
+
+		public static void init()
         {
 			init2();
 			//mpns = (MPN[])Enum.GetValues(typeof(MPN));
@@ -42,6 +44,12 @@ namespace COM3D25.BodyCtr
             isCrcParts = new bool[cnt];
             listSubProp=new List<SubProp>[cnt];
         }
+
+		public static void KategorieSet()
+        {
+			
+
+		}
 
 		public static MPN CreateProp(int minval, int maxval, int defval, MPN mpn, int type)
         {
@@ -222,6 +230,7 @@ namespace COM3D25.BodyCtr
 		/// 참고용
 		/// </summary>
 		/// <returns></returns>
+		/*
 		public static List<MaidProp> CreateInitMaidPropList()
 		{
 			return new List<MaidProp>
@@ -461,5 +470,6 @@ namespace COM3D25.BodyCtr
 			Maid.CreateProp(string.Empty, MPN.seieki_ashi, 3)
 		};
 		}
+		*/
 	}
 }
