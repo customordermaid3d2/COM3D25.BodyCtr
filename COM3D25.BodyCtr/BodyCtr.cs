@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using BepInEx.Configuration;
 using BepInEx.Logging;
 using COM3D2API;
 using HarmonyLib;
@@ -15,7 +16,7 @@ namespace COM3D25.BodyCtr
     class MyAttribute
     {
         public const string PLAGIN_NAME = "BodyCtr";
-        public const string PLAGIN_VERSION = "22.3.4";
+        public const string PLAGIN_VERSION = "22.3.5";
         public const string PLAGIN_FULL_NAME = "COM3D2.BodyCtr.Plugin";
     }
 
@@ -26,8 +27,7 @@ namespace COM3D25.BodyCtr
         MyAttribute.PLAGIN_VERSION)]
     public class BodyCtr : BaseUnityPlugin
     {
-
-        Harmony harmony;
+        // Harmony harmony;
         public static ManualLogSource log;
 
         WindowRectUtill windowRect;
@@ -37,10 +37,14 @@ namespace COM3D25.BodyCtr
         bool maidOn;
         Maid maid = null;
 
+        private static ConfigEntry<bool> isInfo;
+
         private void Awake()
         {
             log = Logger;
             Logger.LogMessage("Awake");
+
+            isInfo = Config.Bind("cfg", "isInfo", false);
 
             MPNUtill.init();
 
@@ -50,7 +54,6 @@ namespace COM3D25.BodyCtr
                 MyAttribute.PLAGIN_FULL_NAME,
                 MyAttribute.PLAGIN_NAME,
                 "SPL" // 최소화시 타이틀명
-
                 );
 
             //harmony = Harmony.CreateAndPatchAll(typeof(BodyCtrPatch));
@@ -102,8 +105,6 @@ namespace COM3D25.BodyCtr
                 windowRect.winNum, windowRect.WindowRect, WindowFunction, "", GUI.skin.box);
         }
 
-
-
         private void WindowFunction(int id)
         {
             GUI.enabled = true; // 하위 GUI활성 가능. 커튼 클릭가능 같은것
@@ -119,12 +120,12 @@ namespace COM3D25.BodyCtr
 
             if (!windowRect.IsOpen)
             {   // 최소화시
-
             }
             else
             {   // 최대화시
                 // 세로 스크롤 시작
                 scrollPosition = GUILayout.BeginScrollView(scrollPosition);
+
                 GUILayout.Label("Maid");
                 seleted = MaidActiveUtill.SelectionGrid(seleted);
                 if (GUI.changed)
@@ -132,7 +133,7 @@ namespace COM3D25.BodyCtr
                     maid = MaidActiveUtill.GetMaid(seleted);
                     if (maid != null)
                     {
-                        MPNUtill.SetMaid(seleted);
+                        MPNUtill.SetMaid(maid);
                         maidOn = true;
                     }
                     else
@@ -141,7 +142,9 @@ namespace COM3D25.BodyCtr
                     }
                     GUI.changed = false;
                 }
-                if (maid != null) // maid.boMAN
+
+                if (GUILayout.Button($"isInfo {isInfo.Value}")) { isInfo.Value = !isInfo.Value; }
+                if (maid != null && isInfo.Value) // maid.boMAN
                 {
                     GUILayout.Label("info");
                     GUILayout.Label($"HasCrcBody {maid.HasCrcBody}");
@@ -157,21 +160,31 @@ namespace COM3D25.BodyCtr
                     GUILayout.Label($"MayuDrawPriority {maid.MayuDrawPriority}");
                     GUILayout.Label($"MicLipSync {maid.MicLipSync}");
                 }
-                    GUILayout.Label("edit");
-                if (maidOn)
-                    for (int i = 0; i < MPNUtill.cnt; i++)
-                    {
-                        GUILayout.Label($"{MPNUtill.names[i]} {MPNUtill.isCrcParts[i]} {MPNUtill.nows[i]} {MPNUtill.mins[i]} {MPNUtill.maxs[i]}");
-                        //GUILayout.Label($"cnt {MPNUtill.listSubProp[i]?.Count}");
-                        MPNUtill.nows[i] = GUILayout.HorizontalSlider(MPNUtill.nows[i], MPNUtill.mins[i], MPNUtill.maxs[i]);
-                        if (GUI.changed)
-                        {
-                            MPNUtill.maid.SetProp(MPNUtill.mpns[i], (int)MPNUtill.nows[i]);
-                            MPNUtill.maid.AllProcProp();
-                            GUI.changed = false;
-                        }
-                    }
 
+                GUILayout.Label("edit");
+                MPNUtill.akey = GUILayout.SelectionGrid(MPNUtill.akey, MPNUtill.dKeys, 4);
+                if (GUI.changed)
+                {
+                    MPNUtill.select();
+                    MPNUtill.SetMaid(maid);
+                    GUI.changed = false;
+                }
+
+                GUILayout.Label("edit");
+                GUI.enabled = maidOn;
+                //if (maidOn)
+                for (int i = 0; i < MPNUtill.acnt; i++)
+                {
+                    GUILayout.Label($"{MPNUtill.aMaidProp[i].idx} , {MPNUtill.anames[i]} , {MPNUtill.aisCrcParts[i]} , {MPNUtill.amins[i]} , {MPNUtill.amaxs[i]} , {MPNUtill.anows[i]} ");
+                    //GUILayout.Label($"cnt {MPNUtill.listSubProp[i]?.Count}");
+                    MPNUtill.anows[i] = GUILayout.HorizontalSlider(MPNUtill.anows[i], MPNUtill.amins[i], MPNUtill.amaxs[i]);
+                    if (GUI.changed)
+                    {
+                        MPNUtill.maid.SetProp(MPNUtill.ampns[i], (int)MPNUtill.anows[i]);
+                        MPNUtill.maid.AllProcProp();
+                        GUI.changed = false;
+                    }
+                }
 
                 GUILayout.EndScrollView();// 세로 스크롤 끝
             }
