@@ -88,18 +88,18 @@ namespace COM3D2.BodyCtr
                 MPN.HeadX,
                 MPN.HeadY,
 
-                MPN.HandSize,
+               // MPN.HandSize,
                 MPN.FaceShape,
                 MPN.FaceShapeSlim,
                 MPN.KubiScl,
-                MPN.NeckThickX,
-                MPN.NeckThickY,
-                MPN.HohoShape,
+                //MPN.NeckThickX,
+                //MPN.NeckThickY,
+                //MPN.HohoShape,
 
                 MPN.NosePos,
                 MPN.NoseScl,
 
-                MPN.LipThick,
+                //MPN.LipThick,
             };
             dmpns["Eye"] = new MPN[]
             {
@@ -116,16 +116,16 @@ namespace COM3D2.BodyCtr
                 MPN.EyeBallSclY,
 
                 MPN.Yorime,
-                MPN.Eyedel,
-                MPN.Itome,
+               //MPN.Eyedel,
+               //MPN.Itome,
 
 
             };
             dmpns["Mabuta"] = new MPN[]
 {
-                 MPN.FutaePosX,
-                MPN.FutaePosY,
-                MPN.FutaeRot,
+                //MPN.FutaePosX,
+                //MPN.FutaePosY,
+                //MPN.FutaeRot,
 
                 MPN.MabutaUpIn,
                 MPN.MabutaUpIn2,
@@ -159,131 +159,131 @@ namespace COM3D2.BodyCtr
 {
                 MPN.MuneL,
                 MPN.MuneS,
-                MPN.MuneM,
+               // MPN.MuneM,
                 MPN.MuneTare,
                 MPN.MuneUpDown,
                 MPN.MuneYori,
                 MPN.MuneYawaraka,
-                MPN.MunePosX,
-                MPN.MunePosY,
-                MPN.MuneThick,
-                MPN.MuneLong,
-                MPN.MuneDir,
+               // MPN.MunePosX,
+               // MPN.MunePosY,
+               // MPN.MuneThick,
+               // MPN.MuneLong,
+               // MPN.MuneDir,
             };
 
             dmpns["Dou"] = new MPN[]
             {
                 MPN.DouPer,
-                MPN.DouThick1X,
-                MPN.DouThick1Y,
-                MPN.DouThick2X,
-                MPN.DouThick2Y,
-                MPN.DouThick3X,
-                MPN.DouThick3Y,
-                MPN.DouThick4X,
-                MPN.DouThick4Y,
-                MPN.DouThick5X,
-                MPN.DouThick5Y,
+               // MPN.DouThick1X,
+               // MPN.DouThick1Y,
+               // MPN.DouThick2X,
+               // MPN.DouThick2Y,
+               // MPN.DouThick3X,
+               // MPN.DouThick3Y,
+               // MPN.DouThick4X,
+               // MPN.DouThick4Y,
+               // MPN.DouThick5X,
+               // MPN.DouThick5Y,
             };
             dmpns["Arm"] = new MPN[]
             {
                 MPN.ArmL,
-                MPN.UpperArmThickX,
-                MPN.UpperArmThickY,
-                MPN.LowerArmThickX,
-                MPN.LowerArmThickY,
-                MPN.UpperArmLowerThickX,
-                MPN.UpperArmLowerThickY,
+              //  MPN.UpperArmThickX,
+              //  MPN.UpperArmThickY,
+              //  MPN.LowerArmThickX,
+              //  MPN.LowerArmThickY,
+              //  MPN.UpperArmLowerThickX,
+              //  MPN.UpperArmLowerThickY,
                 MPN.kata, // 팔
                 MPN.UdeScl,
-                MPN.ElbowThickX,
-                MPN.ElbowThickY,
-                MPN.WristThickX,
-                MPN.WristThickY,
-                MPN.ClavicleThick,
-                MPN.ShoulderThick,
-                MPN.ShoulderTension,
+               // MPN.ElbowThickX,
+               // MPN.ElbowThickY,
+               // MPN.WristThickX,
+               // MPN.WristThickY,
+               // MPN.ClavicleThick,
+               // MPN.ShoulderThick,
+               // MPN.ShoulderTension,
             };
             dmpns["body"] = new MPN[]
             {
                 MPN.sintyou,
                 MPN.west,
-                MPN.WearSuso,
-                MPN.WaistPos,
+              //  MPN.WearSuso,
+              //  MPN.WaistPos,
                 MPN.Hara,
-                MPN.HaraN,
+                //MPN.HaraN,
                 MPN.koshi,
-                MPN.HipSize,
-                MPN.HipRot,
+                //MPN.HipSize,
+                //MPN.HipRot,
             };
-            dmpns["Nyurin"] = new MPN[]
-            {
-                MPN.Nyurin1,
-                MPN.Nyurin2,
-                MPN.Nyurin3,
-                MPN.Nyurin4,
-                MPN.Nyurin5,
-                MPN.Nyurin6,
-                MPN.Nyurin7,
-                MPN.Nyurin8,
-            };
+         // dmpns["Nyurin"] = new MPN[]
+         // {
+         //     MPN.Nyurin1,
+         //     MPN.Nyurin2,
+         //     MPN.Nyurin3,
+         //     MPN.Nyurin4,
+         //     MPN.Nyurin5,
+         //     MPN.Nyurin6,
+         //     MPN.Nyurin7,
+         //     MPN.Nyurin8,
+         // };
 
-            dmpns["Hitomi"] = new MPN[]
-            {
-                MPN.HitomiHiPosX,
-                MPN.HitomiHiPosY,
-                MPN.HitomiHiSclY,
-                MPN.HitomiShapeUp,
-                MPN.HitomiShapeLow,
-                MPN.HitomiShapeIn,
-                MPN.HitomiShapeOutUp,
-                MPN.HitomiShapeOutLow,
-                MPN.HitomiRot,
-            };
-            dmpns["Chikubi"] = new MPN[]
-            {
-                MPN.ChikubiH,
-                MPN.ChikubiK1,
-                MPN.ChikubiK2,
-                MPN.ChikubiK2_MuneS,
-                MPN.ChikubiR,
-                MPN.ChikubiW,
-            };
+         //  dmpns["Hitomi"] = new MPN[]
+         //  {
+         //      MPN.HitomiHiPosX,
+         //      MPN.HitomiHiPosY,
+         //      MPN.HitomiHiSclY,
+         //      MPN.HitomiShapeUp,
+         //      MPN.HitomiShapeLow,
+         //      MPN.HitomiShapeIn,
+         //      MPN.HitomiShapeOutUp,
+         //      MPN.HitomiShapeOutLow,
+         //      MPN.HitomiRot,
+         //  };
+         //  dmpns["Chikubi"] = new MPN[]
+         //  {
+         //      MPN.ChikubiH,
+         //      MPN.ChikubiK1,
+         //      MPN.ChikubiK2,
+         //      MPN.ChikubiK2_MuneS,
+         //      MPN.ChikubiR,
+         //      MPN.ChikubiW,
+         //  };
 
             dmpns["Reg"] = new MPN[]
             {
                 MPN.RegFat,
                 MPN.RegMeet,
-                MPN.ThighThickX,
-                MPN.ThighThickY,
-                MPN.ThighLowerThickX,
-                MPN.ThighLowerThickY,
-                MPN.ThighShin,
-                MPN.KneeThickX,
-                MPN.KneeThickY,
-                MPN.CalfThickX,
-                MPN.CalfThickY,
-                MPN.AnkleThickX,
-                MPN.AnkleThickY,
-                MPN.MuscleSkin,
-                MPN.FootSize,
-            };
-            dmpns["etc"] = new MPN[]
-            {                                                                                   
-                MPN.ChikubiWearTotsu,               
-                MPN.KuikomiPants,
-                MPN.KuikomiStkg,
-               
-                MPN.Hanasuji,
-                MPN.Washibana,
-
-                MPN.Ha1,
-                MPN.Ha2,
-                MPN.Ha3,
-                MPN.Ha4,
-                MPN.Ha5,
-                MPN.Ha6,
-            };
+           //     MPN.ThighThickX,
+           //     MPN.ThighThickY,
+           //     MPN.ThighLowerThickX,
+           //     MPN.ThighLowerThickY,
+           //     MPN.ThighShin,
+           //     MPN.KneeThickX,
+           //     MPN.KneeThickY,
+           //     MPN.CalfThickX,
+           //     MPN.CalfThickY,
+           //     MPN.AnkleThickX,
+           //     MPN.AnkleThickY,
+           //     MPN.MuscleSkin,
+           //     MPN.FootSize,
+           };
+          // dmpns["etc"] = new MPN[]
+          // {                                                                                   
+          //     MPN.ChikubiWearTotsu,               
+          //     MPN.KuikomiPants,
+          //     MPN.KuikomiStkg,
+          //    
+          //     MPN.Hanasuji,
+          //     MPN.Washibana,
+          //
+          //     MPN.Ha1,
+          //     MPN.Ha2,
+          //     MPN.Ha3,
+          //     MPN.Ha4,
+          //     MPN.Ha5,
+          //     MPN.Ha6,
+          // };
 
         }
 
@@ -325,7 +325,7 @@ namespace COM3D2.BodyCtr
                     amins[i] = p.min;
                     amaxs[i] = p.max;
 
-                    aisCrcParts[i] = p.isCrcParts;
+                    //aisCrcParts[i] = p.isCrcParts;
                     alistSubProp[i] = p.listSubProp;
                 }
                 maidOn = true;

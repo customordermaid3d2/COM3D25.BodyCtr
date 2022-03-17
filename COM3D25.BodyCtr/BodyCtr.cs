@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace COM3D25.BodyCtr
+namespace COM3D2.BodyCtr
 {
     class MyAttribute
     {
@@ -51,9 +51,9 @@ namespace COM3D25.BodyCtr
             //rect = new Rect(10, 10, 100, 300);
             windowRect = new WindowRectUtill(
                 Config,
-                MyAttribute.PLAGIN_FULL_NAME,
+                log,
                 MyAttribute.PLAGIN_NAME,
-                "SPL" // 최소화시 타이틀명
+                "Body" // 최소화시 타이틀명
                 );
 
             //harmony = Harmony.CreateAndPatchAll(typeof(BodyCtrPatch));
@@ -129,18 +129,20 @@ namespace COM3D25.BodyCtr
                 if (MPNUtill.maidOn && isInfo.Value) // maid.boMAN
                 {
                     GUILayout.Label("info");
-                    GUILayout.Label($"HasCrcBody {maid.HasCrcBody}");
-                    GUILayout.Label($"HasNewRealMan {maid.HasNewRealMan}");
                     GUILayout.Label($"IsCrcBody {maid.IsCrcBody}");
                     GUILayout.Label($"IsAllProcPropBusy {maid.IsAllProcPropBusy}");
                     GUILayout.Label($"IsBusy {maid.IsBusy}");
+                    GUILayout.Label($"MayuDrawPriority {maid.MayuDrawPriority}");
+                    GUILayout.Label($"MicLipSync {maid.MicLipSync}");
+#if COM3D25
+                    GUILayout.Label($"HasCrcBody {maid.HasCrcBody}");
+                    GUILayout.Label($"HasNewRealMan {maid.HasNewRealMan}");
                     GUILayout.Label($"IsDefaultRealManOnHScene {maid.IsDefaultRealManOnHScene}");
                     GUILayout.Label($"IsDefaultRealManOnNormalScene {maid.IsDefaultRealManOnNormalScene}");
                     GUILayout.Label($"IsNewManIsRealMan {maid.IsNewManIsRealMan}");
                     GUILayout.Label($"IsNowRealMan {maid.IsNowRealMan}");
                     GUILayout.Label($"isOffsetUpdateEnd {maid.isOffsetUpdateEnd}");
-                    GUILayout.Label($"MayuDrawPriority {maid.MayuDrawPriority}");
-                    GUILayout.Label($"MicLipSync {maid.MicLipSync}");
+#endif
                 }
 
                 GUILayout.Label("Kategorie");
@@ -157,12 +159,21 @@ namespace COM3D25.BodyCtr
                     GUILayout.Label("Edit");
                     for (int i = 0; i < MPNUtill.acnt; i++)
                     {
-                        GUILayout.Label($"{MPNUtill.aMaidProp[i].idx} , {MPNUtill.anames[i]} , {MPNUtill.aisCrcParts[i]} , {MPNUtill.amins[i]} , {MPNUtill.amaxs[i]} , {MPNUtill.anows[i]} ");
+                        GUILayout.BeginHorizontal();
+                        GUILayout.Label($"{MPNUtill.aMaidProp[i].idx} , {MPNUtill.anames[i]} , {MPNUtill.anows[i]} ");
+                        GUILayout.FlexibleSpace();
+                        if (GUILayout.Button("Rnd"))
+                        {                            
+                            MPNUtill.maid.SetProp(MPNUtill.ampns[i], (int)(MPNUtill.anows[i] = UnityEngine.Random.Range(MPNUtill.amins[i], MPNUtill.amaxs[i])) );
+                        }
+                        GUILayout.EndHorizontal();
                         MPNUtill.anows[i] = GUILayout.HorizontalSlider(MPNUtill.anows[i], MPNUtill.amins[i], MPNUtill.amaxs[i]);
                         if (GUI.changed)
                         {
                             MPNUtill.maid.SetProp(MPNUtill.ampns[i], (int)MPNUtill.anows[i]);
                             MPNUtill.maid.AllProcProp();
+                            MPNUtill.maid.AllProcPropSeqStart();
+
                             GUI.changed = false;
                         }
                     }
