@@ -171,9 +171,9 @@ namespace COM3D2.BodyCtr
                // MPN.MuneDir,
             };
 
-            dmpns["Dou"] = new MPN[]
-            {
-                MPN.DouPer,
+            //dmpns["Dou"] = new MPN[]
+            //{
+            //    MPN.DouPer,
                // MPN.DouThick1X,
                // MPN.DouThick1Y,
                // MPN.DouThick2X,
@@ -184,28 +184,11 @@ namespace COM3D2.BodyCtr
                // MPN.DouThick4Y,
                // MPN.DouThick5X,
                // MPN.DouThick5Y,
-            };
-            dmpns["Arm"] = new MPN[]
-            {
-                MPN.ArmL,
-              //  MPN.UpperArmThickX,
-              //  MPN.UpperArmThickY,
-              //  MPN.LowerArmThickX,
-              //  MPN.LowerArmThickY,
-              //  MPN.UpperArmLowerThickX,
-              //  MPN.UpperArmLowerThickY,
-                MPN.kata, // 팔
-                MPN.UdeScl,
-               // MPN.ElbowThickX,
-               // MPN.ElbowThickY,
-               // MPN.WristThickX,
-               // MPN.WristThickY,
-               // MPN.ClavicleThick,
-               // MPN.ShoulderThick,
-               // MPN.ShoulderTension,
-            };
+            //};
+
             dmpns["body"] = new MPN[]
             {
+                MPN.DouPer,
                 MPN.sintyou,
                 MPN.west,
               //  MPN.WearSuso,
@@ -216,39 +199,58 @@ namespace COM3D2.BodyCtr
                 //MPN.HipSize,
                 //MPN.HipRot,
             };
-         // dmpns["Nyurin"] = new MPN[]
-         // {
-         //     MPN.Nyurin1,
-         //     MPN.Nyurin2,
-         //     MPN.Nyurin3,
-         //     MPN.Nyurin4,
-         //     MPN.Nyurin5,
-         //     MPN.Nyurin6,
-         //     MPN.Nyurin7,
-         //     MPN.Nyurin8,
-         // };
+            dmpns["Arm"] = new MPN[]
+{
+                MPN.ArmL,
+              //  MPN.UpperArmThickX,
+              //  MPN.UpperArmThickY,
+              //  MPN.LowerArmThickX,
+              //  MPN.LowerArmThickY,
+              //  MPN.UpperArmLowerThickX,
+              //  MPN.UpperArmLowerThickY,
+                MPN.kata, // 팔
+                MPN.UdeScl,
+    // MPN.ElbowThickX,
+    // MPN.ElbowThickY,
+    // MPN.WristThickX,
+    // MPN.WristThickY,
+    // MPN.ClavicleThick,
+    // MPN.ShoulderThick,
+    // MPN.ShoulderTension,
+};
+            // dmpns["Nyurin"] = new MPN[]
+            // {
+            //     MPN.Nyurin1,
+            //     MPN.Nyurin2,
+            //     MPN.Nyurin3,
+            //     MPN.Nyurin4,
+            //     MPN.Nyurin5,
+            //     MPN.Nyurin6,
+            //     MPN.Nyurin7,
+            //     MPN.Nyurin8,
+            // };
 
-         //  dmpns["Hitomi"] = new MPN[]
-         //  {
-         //      MPN.HitomiHiPosX,
-         //      MPN.HitomiHiPosY,
-         //      MPN.HitomiHiSclY,
-         //      MPN.HitomiShapeUp,
-         //      MPN.HitomiShapeLow,
-         //      MPN.HitomiShapeIn,
-         //      MPN.HitomiShapeOutUp,
-         //      MPN.HitomiShapeOutLow,
-         //      MPN.HitomiRot,
-         //  };
-         //  dmpns["Chikubi"] = new MPN[]
-         //  {
-         //      MPN.ChikubiH,
-         //      MPN.ChikubiK1,
-         //      MPN.ChikubiK2,
-         //      MPN.ChikubiK2_MuneS,
-         //      MPN.ChikubiR,
-         //      MPN.ChikubiW,
-         //  };
+            //  dmpns["Hitomi"] = new MPN[]
+            //  {
+            //      MPN.HitomiHiPosX,
+            //      MPN.HitomiHiPosY,
+            //      MPN.HitomiHiSclY,
+            //      MPN.HitomiShapeUp,
+            //      MPN.HitomiShapeLow,
+            //      MPN.HitomiShapeIn,
+            //      MPN.HitomiShapeOutUp,
+            //      MPN.HitomiShapeOutLow,
+            //      MPN.HitomiRot,
+            //  };
+            //  dmpns["Chikubi"] = new MPN[]
+            //  {
+            //      MPN.ChikubiH,
+            //      MPN.ChikubiK1,
+            //      MPN.ChikubiK2,
+            //      MPN.ChikubiK2_MuneS,
+            //      MPN.ChikubiR,
+            //      MPN.ChikubiW,
+            //  };
 
             dmpns["Reg"] = new MPN[]
             {

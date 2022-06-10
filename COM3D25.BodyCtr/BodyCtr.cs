@@ -156,7 +156,17 @@ namespace COM3D2.BodyCtr
 
                 if (MPNUtill.maidOn)
                 {
+                    GUILayout.BeginHorizontal();
                     GUILayout.Label("Edit");
+                    if (GUILayout.Button("Kategorie Rnd"))
+                    {
+                        for (int i = 0; i < MPNUtill.acnt; i++)
+                            MPNUtill.maid.SetProp(MPNUtill.ampns[i], (int)(MPNUtill.anows[i] = UnityEngine.Random.Range(MPNUtill.amins[i], MPNUtill.amaxs[i])));
+                        MPNUtill.maid.AllProcProp();
+                        MPNUtill.maid.AllProcPropSeqStart();
+                        GUI.changed = false;
+                    }
+                    GUILayout.EndHorizontal();
                     for (int i = 0; i < MPNUtill.acnt; i++)
                     {
                         GUILayout.BeginHorizontal();
